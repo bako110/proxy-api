@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: bf1-proxy-api
+    env: node
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: VPS_URL
+        value: http://161.97.117.46:8090
+      - key: FRONTEND_URL
+        value: https://bf1-d4h8.onrender.com
