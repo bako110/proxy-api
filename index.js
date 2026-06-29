@@ -9,11 +9,15 @@ const PORT = process.env.PORT || 3001;
 const FRONTEND_URL = process.env.FRONTEND_URL || 'https://bf1-d4h8.onrender.com';
 
 app.use(cors({
-  origin: FRONTEND_URL,
-  credentials: true,
+  origin: '*',
+  credentials: false,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
 }));
 
-app.use('/api/v1', createProxyMiddleware({
+app.options('*', cors());
+
+app.use('/', createProxyMiddleware({
   target: VPS_URL,
   changeOrigin: true,
   on: {
